@@ -8,6 +8,10 @@
 <br />
 
 <div align="center">
+  <!-- Build Status -->
+  <a href="https://travis-ci.com/hyperfluid-solutions/food-access-map">
+    <img src="https://travis-ci.com/hyperfluid-solutions/food-access-map.svg?branch=master" alt="Build Status" />
+  </a>
   <!-- Dependency Status -->
   <a href="https://david-dm.org/react-boilerplate/react-boilerplate">
     <img src="https://david-dm.org/react-boilerplate/react-boilerplate.svg" alt="Dependency Status" />
