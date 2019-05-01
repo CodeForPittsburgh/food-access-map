@@ -1,13 +1,28 @@
 language: node_js
 
+addons:
+  apt:
+    packages:
+      - git
+      - make
+      - curl
+
 node_js:
   - 'node'
   - 'lts/*'
+
+install:
+  - make init
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
   - npm test -- --maxWorkers=4
   - npm run build
+  - make terraform/install
+  - make terraform/get-plugins
+  - make terraform/get-modules
+  - make terraform/lint
+  - make terraform/validate
 
 before_install:
   - export CHROME_BIN=chromium-browser
