@@ -15,18 +15,12 @@ services:
   - xvfb
 
 install:
-  - make init
   - npm install
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
   - npm test -- --maxWorkers=4
   - npm run build
-  - make terraform/install
-  - make terraform/get-plugins
-  - make terraform/get-modules
-  - make terraform/lint
-  - make terraform/validate
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -35,6 +29,21 @@ before_install:
 notifications:
   email:
     on_failure: change
+
+# Install terraform
+# before_install:
+#   - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
+#   - unzip /tmp/terraform.zip -d /tmp
+#   - mkdir ~/bin
+#   - mv /tmp/terraform ~/bin
+#   - export PATH="~/bin:$PATH"
+
+# deploy:
+# - provider: script
+#   skip_cleanup: true
+#   script: terraform apply ./terraform
+#   on:
+#     branch: master
 
 after_success: 'npm run coveralls'
 
