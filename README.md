@@ -12,6 +12,10 @@
   <a href="https://travis-ci.com/hyperfluid-solutions/food-access-map">
     <img src="https://travis-ci.com/hyperfluid-solutions/food-access-map.svg?branch=master" alt="Build Status" />
   </a>
+  <!-- Code Quality Status -->
+  <a href="https://www.codacy.com/app/jonshaffer/food-access-map?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hyperfluid-solutions/food-access-map&amp;utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/3ec1c5f4181d4a6892882aa04bea205c"/>
+  </a>
   <!-- Dependency Status -->
   <a href="https://david-dm.org/react-boilerplate/react-boilerplate">
     <img src="https://david-dm.org/react-boilerplate/react-boilerplate.svg" alt="Dependency Status" />
