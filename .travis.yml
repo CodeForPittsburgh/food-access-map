@@ -16,6 +16,7 @@ services:
 
 install:
   - make init
+  - npm install
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
