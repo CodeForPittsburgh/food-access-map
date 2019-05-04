@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
   body.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+  
+  .headline span {
+    font-family: Futura, sans-serif;
+    font-size: 4rem;
+    color: #36454f;
+  }
 
   #app {
     background-color: #fafafa;
