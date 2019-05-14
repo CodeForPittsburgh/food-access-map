@@ -6,15 +6,23 @@
  */
 
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Map from '../../components/Map';
 
 export default function HomePage() {
   return (
-    <h1>
-      <FormattedMessage {...messages.header} />
+    <Grid
+      container
+      direction="column"
+      justify="space-around"
+      alignItems="center"
+    >
+      <h1 className="headline">
+        <FormattedMessage {...messages.header} />
+      </h1>
       <Map />
-    </h1>
+    </Grid>
   );
 }
