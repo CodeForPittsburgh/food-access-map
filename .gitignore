@@ -1,0 +1,20 @@
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# Don't check auto-generated stuff into git
+coverage
+build
+node_modules
+stats.json
+.terraform
+.idea
+terraform-aws-cloudtrail-s3-bucket.iml
+food-access-map.iml
+.build-harness
+build-harness
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
