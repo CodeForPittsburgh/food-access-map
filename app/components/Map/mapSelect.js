@@ -22,7 +22,9 @@ class MapSelect extends Component {
             input={<Input name="townSelector" id="town-selector" />}
           >
             {towns.map(town => (
-              <MenuItem value={town.place}>{town.place}</MenuItem>
+              <MenuItem key={town.latitude + town.longitude} value={town.place}>
+                {town.place}
+              </MenuItem>
             ))}
           </Select>
           <FormHelperText>Some important helper text</FormHelperText>
@@ -33,7 +35,7 @@ class MapSelect extends Component {
 }
 
 MapSelect.propTypes = {
-  townArray: PropTypes.object.isRequired,
+  townArray: PropTypes.array.isRequired,
   selectedTown: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
