@@ -9,11 +9,14 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
 import Map from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
+configure({ adapter: new Adapter() });
 describe('<Map />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
@@ -25,16 +28,24 @@ describe('<Map />', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should call set state when there are changes', () => {
+    const wrapper = shallow(<Map />);
+    const instance = wrapper.instance();
+    const spy = jest.spyOn(instance, 'setState');
+    instance.handleSelection({ target: { value: 'Millvale' } });
+    expect(spy).toHaveBeenCalledWith({
+      viewport: {
+        width: 400,
+        height: 400,
+        latitude: 40.4801,
+        longitude: -79.9784,
+        zoom: 12,
+      },
+      selectedTown: 'Millvale',
+    });
   });
 
-  /**
-   * Unskip this test to use it
-   *
-   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
-   */
-  it.skip('Should render and match the snapshot', () => {
+  it('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
     } = render(
