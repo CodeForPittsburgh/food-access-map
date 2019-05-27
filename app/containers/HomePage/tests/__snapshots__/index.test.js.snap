@@ -1,9 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HomePage /> should render and match the snapshot 1`] = `
-<h1>
-  <span>
-    This is the HomePage container!
-  </span>
-</h1>
+<div
+  class="MuiGrid-container-1 MuiGrid-direction-xs-column-4 MuiGrid-align-items-xs-center-9 MuiGrid-justify-xs-space-around-21"
+>
+  <h1
+    class="headline"
+  >
+    <span>
+      Food Access Map
+    </span>
+  </h1>
+  <div>
+    <div
+      style="position: relative; width: 0px; height: 0px; cursor: grab; outline: none;"
+      tabindex="1"
+    >
+      <div
+        style="position: relative; width: 100%; height: 100%;"
+      >
+        <div
+          class=""
+          style="position: absolute; width: 100%; height: 100%; overflow: hidden; visibility: inherit;"
+        />
+        <div
+          style="overflow: visible; height: 0px; width: 0px;"
+        />
+        <div
+          class="resize-triggers"
+        >
+          <div
+            class="expand-trigger"
+          >
+            <div
+              style="width: 1px; height: 1px;"
+            />
+          </div>
+          <div
+            class="contract-trigger"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="MuiFormControl-root-98"
+      >
+        <label
+          class="MuiFormLabel-root-113 MuiFormLabel-filled-117 MuiInputLabel-root-102 MuiInputLabel-formControl-107 MuiInputLabel-animated-110 MuiInputLabel-shrink-109"
+          data-shrink="true"
+          for="town-selector"
+        >
+          Town/Neighborhood
+        </label>
+        <div
+          class="MuiInputBase-root-140 MuiInput-root-127 MuiInput-underline-131 MuiInputBase-formControl-141 MuiInput-formControl-128"
+        >
+          <div
+            class="MuiSelect-root-120"
+          >
+            <div
+              aria-haspopup="true"
+              aria-pressed="false"
+              class="MuiSelect-select-121 MuiSelect-selectMenu-124 MuiInputBase-input-150 MuiInput-input-135"
+              id="select-townSelector"
+              role="button"
+              tabindex="0"
+            >
+              Pittsburgh
+            </div>
+            <input
+              id="town-selector"
+              name="townSelector"
+              type="hidden"
+              value="Pittsburgh"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root-157 MuiSelect-icon-126"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </div>
+        <p
+          class="MuiFormHelperText-root-170 MuiFormHelperText-filled-176"
+        >
+          Choose a region for instant zoom
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 `;

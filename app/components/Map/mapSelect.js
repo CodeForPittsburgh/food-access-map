@@ -27,7 +27,7 @@ class MapSelect extends Component {
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText>Some important helper text</FormHelperText>
+          <FormHelperText>Choose a region for instant zoom</FormHelperText>
         </FormControl>
       </div>
     );
