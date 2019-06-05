@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Map /> Should render and match the snapshot 1`] = `
+<div>
+  <div
+    style="position: relative; width: 0px; height: 0px; cursor: grab; outline: none;"
+    tabindex="1"
+  >
+    <div
+      style="position: relative; width: 100%; height: 100%;"
+    >
+      <div
+        class=""
+        style="position: absolute; width: 100%; height: 100%; overflow: hidden; visibility: inherit;"
+      />
+      <div
+        style="overflow: visible; height: 0px; width: 0px;"
+      />
+      <div
+        class="resize-triggers"
+      >
+        <div
+          class="expand-trigger"
+        >
+          <div
+            style="width: 1px; height: 1px;"
+          />
+        </div>
+        <div
+          class="contract-trigger"
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="MuiFormControl-root-81"
+    >
+      <label
+        class="MuiFormLabel-root-96 MuiFormLabel-filled-100 MuiInputLabel-root-85 MuiInputLabel-formControl-90 MuiInputLabel-animated-93 MuiInputLabel-shrink-92"
+        data-shrink="true"
+        for="town-selector"
+      >
+        Town/Neighborhood
+      </label>
+      <div
+        class="MuiInputBase-root-123 MuiInput-root-110 MuiInput-underline-114 MuiInputBase-formControl-124 MuiInput-formControl-111"
+      >
+        <div
+          class="MuiSelect-root-103"
+        >
+          <div
+            aria-haspopup="true"
+            aria-pressed="false"
+            class="MuiSelect-select-104 MuiSelect-selectMenu-107 MuiInputBase-input-133 MuiInput-input-118"
+            id="select-townSelector"
+            role="button"
+            tabindex="0"
+          >
+            Pittsburgh
+          </div>
+          <input
+            id="town-selector"
+            name="townSelector"
+            type="hidden"
+            value="Pittsburgh"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root-140 MuiSelect-icon-109"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+      </div>
+      <p
+        class="MuiFormHelperText-root-153 MuiFormHelperText-filled-159"
+      >
+        Choose a region for instant zoom
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 {
   "name": "food-access-map",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A food access map for Pittsburgh",
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:updatesnaps": "cross-env NODE_ENV=test jest --updateSnapshot",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
@@ -118,6 +119,8 @@
     "compression-webpack-plugin": "2.0.0",
     "coveralls": "3.0.3",
     "css-loader": "2.1.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
