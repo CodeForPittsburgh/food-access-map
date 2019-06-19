@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LocationTablePage /> should render and match the snapshot 1`] = `
+<ForwardRef(WithStyles)
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="space-around"
+>
+  <Link
+    to="/"
+  >
+    I go back home! Why am I not a reusable nav?!
+  </Link>
+  <h1
+    className="headline"
+  >
+    <FormattedMessage
+      defaultMessage="Locations"
+      id="app.containers.LocationTablePage.header"
+      values={Object {}}
+    />
+  </h1>
+  <Memo(LocationTable) />
+</ForwardRef(WithStyles)>
+`;

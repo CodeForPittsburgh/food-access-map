@@ -1,0 +1,572 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LocationTable /> Should render and match the snapshot 1`] = `
+<div>
+  <h1>
+    Option 1
+  </h1>
+  <div
+    class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <table
+      class="MuiTable-root"
+    >
+      <thead
+        class="MuiTableHead-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head"
+            scope="col"
+          >
+            Name
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight"
+            scope="col"
+          >
+            Open
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight"
+            scope="col"
+          >
+            Close
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="MuiTableBody-root"
+      >
+        <tr
+          class="MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-body"
+            scope="row"
+          >
+            dingle
+          </th>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            8am
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            6pm
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-body"
+            scope="row"
+          >
+            dangle
+          </th>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            7am
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            5pm
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-body"
+            scope="row"
+          >
+            dongle
+          </th>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            6am
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+          >
+            4pm
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h1>
+    Option 2
+  </h1>
+  <div
+    class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded"
+    style="position: relative;"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular MTableToolbar-root-318 MuiToolbar-gutters"
+    >
+      <div
+        class="MTableToolbar-title-322"
+      >
+        <h6
+          class="MuiTypography-root MuiTypography-h6"
+        >
+          Food Banks
+        </h6>
+      </div>
+      <div
+        class="MTableToolbar-spacer-320"
+      />
+      <div
+        class="MuiFormControl-root MuiTextField-root MTableToolbar-searchField-323"
+        color="inherit"
+      >
+        <div
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd"
+        >
+          <div
+            class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+          >
+            <span
+              aria-hidden="true"
+              class="material-icons MuiIcon-root MuiIcon-fontSizeSmall"
+              title="Search"
+            >
+              search
+            </span>
+          </div>
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd"
+            placeholder="Search"
+            type="text"
+            value=""
+          />
+          <div
+            class="MuiInputAdornment-root MuiInputAdornment-positionEnd"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root Mui-disabled Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <span
+                  aria-hidden="true"
+                  class="material-icons MuiIcon-root MuiIcon-fontSizeSmall"
+                >
+                  clear
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MTableToolbar-actions-321"
+      >
+        <div>
+          <div />
+        </div>
+      </div>
+    </div>
+    <div
+      style="overflow-x: auto;"
+    >
+      <div>
+        <div
+          style="overflow-y: auto;"
+        >
+          <table
+            class="MuiTable-root"
+          >
+            <thead
+              class="MuiTableHead-root"
+            >
+              <tr
+                class="MuiTableRow-root MuiTableRow-head"
+              >
+                <th
+                  class="MuiTableCell-root MTableHeader-header-426 MuiTableCell-head MuiTableCell-alignLeft"
+                  scope="col"
+                >
+                  <span
+                    class="MuiButtonBase-root MuiTableSortLabel-root"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div
+                      aria-roledescription="Draggable item. Press space bar to lift"
+                      data-react-beautiful-dnd-drag-handle="1"
+                      data-react-beautiful-dnd-draggable="1"
+                      draggable="false"
+                      tabindex="0"
+                    >
+                      Name
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiTableSortLabel-icon MuiTableSortLabel-iconDirectionAsc"
+                      focusable="false"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                </th>
+                <th
+                  class="MuiTableCell-root MTableHeader-header-426 MuiTableCell-head MuiTableCell-alignLeft"
+                  scope="col"
+                >
+                  <span
+                    class="MuiButtonBase-root MuiTableSortLabel-root"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div
+                      aria-roledescription="Draggable item. Press space bar to lift"
+                      data-react-beautiful-dnd-drag-handle="1"
+                      data-react-beautiful-dnd-draggable="1"
+                      draggable="false"
+                      tabindex="0"
+                    >
+                      Opening Time
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiTableSortLabel-icon MuiTableSortLabel-iconDirectionAsc"
+                      focusable="false"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                </th>
+                <th
+                  class="MuiTableCell-root MTableHeader-header-426 MuiTableCell-head MuiTableCell-alignLeft"
+                  scope="col"
+                >
+                  <span
+                    class="MuiButtonBase-root MuiTableSortLabel-root"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div
+                      aria-roledescription="Draggable item. Press space bar to lift"
+                      data-react-beautiful-dnd-drag-handle="1"
+                      data-react-beautiful-dnd-draggable="1"
+                      draggable="false"
+                      tabindex="0"
+                    >
+                      Closing Time
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiTableSortLabel-icon MuiTableSortLabel-iconDirectionAsc"
+                      focusable="false"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                      />
+                    </svg>
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="MuiTableBody-root"
+            >
+              <tr
+                actions=""
+                class="MuiTableRow-root"
+                index="0"
+                level="0"
+                localization="[object Object]"
+                path="0"
+                style="transition: all ease 300ms;"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="dingle"
+                >
+                  dingle
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="8am"
+                >
+                  8am
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="6pm"
+                >
+                  6pm
+                </td>
+              </tr>
+              <tr
+                actions=""
+                class="MuiTableRow-root"
+                index="1"
+                level="0"
+                localization="[object Object]"
+                path="1"
+                style="transition: all ease 300ms;"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="dangle"
+                >
+                  dangle
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="7am"
+                >
+                  7am
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="5pm"
+                >
+                  5pm
+                </td>
+              </tr>
+              <tr
+                actions=""
+                class="MuiTableRow-root"
+                index="2"
+                level="0"
+                localization="[object Object]"
+                path="2"
+                style="transition: all ease 300ms;"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="dongle"
+                >
+                  dongle
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="6am"
+                >
+                  6am
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft"
+                  value="4pm"
+                >
+                  4pm
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root"
+                style="height: 49px;"
+              />
+              <tr
+                class="MuiTableRow-root"
+                style="height: 49px;"
+              />
+              <tr
+                class="MuiTableRow-root"
+                style="height: 1px;"
+              />
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <table
+      class="MuiTable-root"
+    >
+      <tfoot
+        class="MuiTableFooter-root"
+        style="display: grid;"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-footer"
+        >
+          <td
+            class="MuiTableCell-root MuiTablePagination-root Component-paginationRoot-287 MuiTableCell-footer"
+            colspan="3"
+            icons="[object Object]"
+            style="float: right; overflow-x: auto;"
+          >
+            <div
+              class="MuiToolbar-root MuiToolbar-regular MuiTablePagination-toolbar Component-paginationToolbar-288 MuiToolbar-gutters"
+            >
+              <div
+                class="MuiTablePagination-spacer"
+              />
+              <span
+                class="MuiTypography-root MuiTablePagination-caption Component-paginationCaption-289 MuiTypography-caption MuiTypography-colorInherit"
+              >
+                Rows per page:
+              </span>
+              <div
+                class="MuiInputBase-root MuiTablePagination-input"
+              >
+                <div
+                  class="MuiSelect-root MuiTablePagination-selectRoot Component-paginationSelectRoot-290"
+                >
+                  <div
+                    aria-haspopup="true"
+                    aria-pressed="false"
+                    class="MuiSelect-select MuiTablePagination-select MuiSelect-selectMenu MuiInputBase-input"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div
+                      style="padding: 0px 5px;"
+                    >
+                      5 rows 
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    value="5"
+                  />
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSelect-icon MuiTablePagination-selectIcon"
+                    focusable="false"
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <span
+                class="MuiTypography-root MuiTablePagination-caption Component-paginationCaption-289 MuiTypography-caption MuiTypography-colorInherit"
+              >
+                1-3 of 3
+              </span>
+              <div
+                class="MTablePaginationInner-root-480"
+              >
+                <span
+                  class=""
+                  title="First Page"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root Mui-disabled Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="material-icons MuiIcon-root"
+                      >
+                        first_page
+                      </span>
+                    </span>
+                  </button>
+                </span>
+                <span
+                  class=""
+                  title="Previous Page"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root Mui-disabled Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="material-icons MuiIcon-root"
+                      >
+                        chevron_left
+                      </span>
+                    </span>
+                  </button>
+                </span>
+                <span
+                  class="MuiTypography-root MuiTypography-caption"
+                  style="flex: 1; text-align: center; align-self: center; flex-basis: inherit;"
+                >
+                  1-3 of 3
+                </span>
+                <span
+                  class=""
+                  title="Next Page"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root Mui-disabled Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="material-icons MuiIcon-root"
+                      >
+                        chevron_right
+                      </span>
+                    </span>
+                  </button>
+                </span>
+                <span
+                  class=""
+                  title="Last Page"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root Mui-disabled Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="material-icons MuiIcon-root"
+                      >
+                        last_page
+                      </span>
+                    </span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+`;
