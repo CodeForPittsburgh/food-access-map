@@ -11,6 +11,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import FoodSiteDetailPage from 'containers/FoodSiteDetailPage';
 import LocationTablePage from 'containers/LocationTablePage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
@@ -22,6 +23,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/locations" component={LocationTablePage} />
+        <Route exact path="/foodSite/:uniqId" component={FoodSiteDetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

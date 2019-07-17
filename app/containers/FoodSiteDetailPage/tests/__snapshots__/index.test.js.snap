@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FoodSiteDetailPage /> should render and match the snapshot 1`] = `
+<ForwardRef(WithStyles)
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="space-around"
+>
+  <Link
+    to="/"
+  >
+    I go back home! Oh god why have you not made me a dedicated nav component yet?!
+  </Link>
+  <h1
+    className="headline"
+  >
+    <FormattedMessage
+      defaultMessage="Details Page (better title . . .)"
+      id="app.containers.FoodSiteDetailPage.header"
+      values={Object {}}
+    />
+  </h1>
+  <p>
+    oh hey I am the detail page for now. Fill me with styled display components
+  </p>
+  <p>
+    This is my uniq id! behold its glory!!! 
+    123
+  </p>
+</ForwardRef(WithStyles)>
+`;
