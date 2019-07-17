@@ -5,8 +5,6 @@
  */
 
 import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import _ from 'lodash';
 
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
@@ -14,9 +12,6 @@ import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import CityPin from './cityPin';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
@@ -58,18 +53,7 @@ class Map extends React.PureComponent {
       longitude={city.longitude}
       latitude={city.latitude}
     >
-      <CityPin
-        size={20}
-        onClick={() => this.setState({ popupInfo: city })}
-        // onClick={() =>
-        //   console.log(
-        //     'I should link to a specific view page for this site!',
-        //     `maybe use a slug of my latitude: ${city.latitude} and longitude: ${
-        //       city.longitude
-        //     }?`,
-        //   )
-        // }
-      />
+      <CityPin size={20} onClick={() => this.setState({ popupInfo: city })} />
     </Marker>
   );
 
@@ -113,7 +97,5 @@ class Map extends React.PureComponent {
     );
   }
 }
-
-Map.propTypes = {};
 
 export default memo(Map);
