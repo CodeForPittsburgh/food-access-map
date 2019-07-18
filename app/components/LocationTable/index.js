@@ -12,6 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import MaterialTable from 'material-table';
+import axios from 'axios';
 
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
@@ -28,34 +29,37 @@ class LocationTable extends React.PureComponent {
     this.loadLocationsFromServer = this.loadLocationsFromServer.bind(this);
   }
 
-  // load location data from the back end, once there is a back end
   loadLocationsFromServer() {
-    // axios.get('http://ourBackEnd/api/Locations')
-    //   .then(res => {
-    //     this.setState({ locations: res.data });
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-    const fakeLocations = [
-      {
-        name: 'dingle',
-        open: '8am',
-        close: '6pm',
-      },
-      {
-        name: 'dangle',
-        open: '7am',
-        close: '5pm',
-      },
-      {
-        name: 'dongle',
-        open: '6am',
-        close: '4pm',
-      },
-    ];
+    axios
+      .get('http://localhost:8000/api/location/')
+      .then(res => {
+        this.setState({ locations: res.data });
+        // console.log(res.data);  use this to check out other info we can add to tables
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
-    this.setState({ locations: fakeLocations });
+    // uncomment this and comment out axios if not using the Django server
+    // const fakeLocations = [
+    //   {
+    //     name: 'dingle',
+    //     open_time: '8am',
+    //     close_time: '6pm',
+    //   },
+    //   {
+    //     name: 'dangle',
+    //     open_time: '7am',
+    //     close_time: '5pm',
+    //   },
+    //   {
+    //     name: 'dongle',
+    //     open_time: '6am',
+    //     close_time: '4pm',
+    //   },
+    // ];
+
+    // this.setState({ locations: fakeLocations });
   }
 
   componentDidMount() {
@@ -87,8 +91,8 @@ class LocationTable extends React.PureComponent {
                   <TableCell component="th" scope="row">
                     {loc.name}
                   </TableCell>
-                  <TableCell align="right">{loc.open}</TableCell>
-                  <TableCell align="right">{loc.close}</TableCell>
+                  <TableCell align="right">{loc.open_time}</TableCell>
+                  <TableCell align="right">{loc.close_time}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -107,8 +111,8 @@ class LocationTable extends React.PureComponent {
           title="Food Banks"
           columns={[
             { title: 'Name', field: 'name' },
-            { title: 'Opening Time', field: 'open' },
-            { title: 'Closing Time', field: 'close' },
+            { title: 'Opening Time', field: 'open_time' },
+            { title: 'Closing Time', field: 'close_time' },
           ]}
           data={this.state.locations}
         />
