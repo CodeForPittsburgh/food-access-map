@@ -12,6 +12,7 @@ The goal for this project is to create an app for mapping and locating food reso
 Email steven.saylor@pitt.edu with the food source to be added
 
 **What if I think information about a food source is inaccurate?** 
+
 •	Email steven.saylor@pitt.edu 
 
 **I’m new to this project, what can I do?** 
@@ -57,7 +58,7 @@ git clone https://github.com/CodeForPittsburgh/food-access-map
 ```
 cd food-access-map
 ```
-**3: install the dependencies (this could take over ten minutes) **
+**3: install the dependencies (this could take over ten minutes)**
 ```
 npm install
 ```
