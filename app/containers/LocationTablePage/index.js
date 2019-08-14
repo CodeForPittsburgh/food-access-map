@@ -8,9 +8,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 import LocationTable from '../../components/LocationTable';
 import messages from './messages';
+import NavBar from '../../components/NavBar';
 
 export default function LocationTablePage() {
   return (
@@ -20,7 +20,7 @@ export default function LocationTablePage() {
       justify="space-around"
       alignItems="center"
     >
-      <Link to="/">I go back home! Why am I not a reusable nav?!</Link>
+      <NavBar />
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>
