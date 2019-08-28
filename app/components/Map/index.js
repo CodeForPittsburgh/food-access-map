@@ -8,6 +8,7 @@ import React, { memo } from 'react';
 import _ from 'lodash';
 
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import axios from 'axios';
 import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
@@ -28,7 +29,14 @@ class Map extends React.PureComponent {
       },
       selectedTown: 'Pittsburgh',
       popupInfo: null,
+      sites: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get('https://dev.stevesaylor.io/api/location/')
+      .then(res => this.setState({ sites: res.data }));
   }
 
   handleSelection(event) {
@@ -47,15 +55,23 @@ class Map extends React.PureComponent {
     });
   }
 
-  renderCityMarker = (city, index) => (
-    <Marker
-      key={`marker-${index}`}
-      longitude={city.longitude}
-      latitude={city.latitude}
-    >
-      <CityPin size={20} onClick={() => this.setState({ popupInfo: city })} />
-    </Marker>
-  );
+  renderCityMarker = (city, index) => {
+    if (city.longitude) {
+      return (
+        <Marker
+          key={`marker-${index}`}
+          longitude={city.longitude}
+          latitude={city.latitude}
+        >
+          <CityPin
+            size={20}
+            onClick={() => this.setState({ popupInfo: city })}
+          />
+        </Marker>
+      );
+    }
+    return true;
+  };
 
   renderPopup() {
     const { popupInfo } = this.state;
@@ -84,7 +100,7 @@ class Map extends React.PureComponent {
           onViewportChange={viewport => this.setState({ viewport })}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
-          {townArray.map(this.renderCityMarker)}
+          {this.state.sites.map(this.renderCityMarker)}
 
           {this.renderPopup()}
         </ReactMapGL>
