@@ -8,9 +8,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import messages from './messages';
+import NavBar from '../../components/NavBar';
 
 export default function FoodSiteDetailPage(props) {
   return (
@@ -20,10 +20,7 @@ export default function FoodSiteDetailPage(props) {
       justify="space-around"
       alignItems="center"
     >
-      <Link to="/">
-        I go back home! Oh god why have you not made me a dedicated nav
-        component yet?!
-      </Link>
+      <NavBar />
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>
