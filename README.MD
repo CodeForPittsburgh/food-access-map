@@ -66,4 +66,5 @@ npm run start
 •	“npm run start” will create a mini-server that will host the map and make it available for the web browser 
 •	To view the current version of the map/app on the browser, you need to go to LocalHost:3000
 
-
+## Design Mockups
+Design mockups can be found in [docs/design](docs/design)
