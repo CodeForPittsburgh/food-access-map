@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import messages from './messages';
 import NavBar from '../../components/NavBar';
+import FoodSiteDetail from '../../components/FoodSiteDetail';
 
 export default function FoodSiteDetailPage(props) {
   return (
@@ -24,11 +25,7 @@ export default function FoodSiteDetailPage(props) {
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>
-      <p>
-        oh hey I am the detail page for now. Fill me with styled display
-        components
-      </p>
-      <p>This is my uniq id! behold its glory!!! {props.match.params.uniqId}</p>
+      <FoodSiteDetail siteId={props.match.params.uniqId} />
     </Grid>
   );
 }
