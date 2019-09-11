@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import { ThemeProvider } from '@material-ui/styles';
 
 // Import root app
 import App from 'containers/App';
@@ -28,6 +29,7 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
+import { createMuiTheme } from '@material-ui/core';
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -38,12 +40,18 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+// create Material UI theme
+// if we create our own theme, we'll pass it into this
+const muiTheme = createMuiTheme(/* our future theme */);
+
 const render = messages => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <ThemeProvider theme={muiTheme}>
+            <App />
+          </ThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
