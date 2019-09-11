@@ -25,7 +25,7 @@ class Map extends React.PureComponent {
         height: 400,
         latitude: 40.4406,
         longitude: -79.9659,
-        zoom: 8,
+        zoom: 12,
       },
       selectedTown: 'Pittsburgh',
       popupInfo: null,
@@ -44,7 +44,6 @@ class Map extends React.PureComponent {
     const place = event.target.value;
     const { latitude, longitude } = _.find(townArray, { place });
     const newView = _.assign({}, oldView, {
-      zoom: 12,
       latitude,
       longitude,
     });
