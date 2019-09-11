@@ -37,11 +37,8 @@ Anybody can work on these issues, reach out to others working on the issues, and
 
 Please see the "Four Steps for Setting Up The App To Test/Demo" section
 
-•	In the server, something was thrown together, but it needs to be updated because it didn’t cover a lot of stuff
-•	For the map, a lot of the boilerplate stuff was removed. 
-•	Just point people to the Readme’s and put it in those readmes. 
+**What is React Boilerplate?**
 
-Directions
 React Boilerplate is simply a structure for the project that comes with a whole bunch of dev tools, many of which we haven’t used, many we probably won’t use, but are there if we need them. And their documentation is pretty good. 
 
 The documentation for Boilerplate can be found here: 
