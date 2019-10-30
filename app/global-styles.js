@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
     color: #36454f;
   }
 
+  h1, h2, h3 {
+    font-family: Futura, sans-serif;
+    color: #36454f;
+  }
+
   #app {
     background-color: #fafafa;
     min-height: 100%;
