@@ -13,6 +13,7 @@ import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import CityPin from './cityPin';
+import Wrapper from './Wrapper';
 
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
@@ -21,8 +22,8 @@ class Map extends React.PureComponent {
 
     this.state = {
       viewport: {
-        width: 400,
-        height: 400,
+        width: '100%',
+        height: '100%',
         latitude: 40.4406,
         longitude: -79.9659,
         zoom: 12,
@@ -93,7 +94,12 @@ class Map extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <Wrapper>
+        <MapSelect
+          townArray={townArray}
+          selectedTown={this.state.selectedTown}
+          handleChange={e => this.handleSelection(e)}
+        />
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
@@ -103,12 +109,7 @@ class Map extends React.PureComponent {
 
           {this.renderPopup()}
         </ReactMapGL>
-        <MapSelect
-          townArray={townArray}
-          selectedTown={this.state.selectedTown}
-          handleChange={e => this.handleSelection(e)}
-        />
-      </div>
+      </Wrapper>
     );
   }
 }

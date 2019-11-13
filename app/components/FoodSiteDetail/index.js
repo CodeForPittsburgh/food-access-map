@@ -72,7 +72,7 @@ class FoodSiteDetail extends React.PureComponent {
           Or is it perhaps {this.state.siteDetails.open_time1 || '--'} until
           {this.state.siteDetails.close_time1 || '--'}?
         </small>
-        <h1>Days of Operation</h1>
+        <h2>Days of Operation</h2>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -152,7 +152,7 @@ class FoodSiteDetail extends React.PureComponent {
             labelPlacement="top"
           />
         </FormGroup>
-        <h1>The Sweet Deets</h1>
+        <h2>The Sweet Deets</h2>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -221,15 +221,18 @@ class FoodSiteDetail extends React.PureComponent {
             labelPlacement="top"
           />
         </FormGroup>
-        <h3>
-          OMG check out this sweet mrfei score!!!!
-          {this.state.siteDetails.mrfei_score || '--'}
-        </h3>
-        <p>Find this site at</p>
-        <p>Street: {this.state.siteDetails.address || '--'}</p>
-        <p>City: {this.state.siteDetails.city || '--'}</p>
-        <p>State: {this.state.siteDetails.state || '--'}</p>
-        <p>Zip: {this.state.siteDetails.zip_code || '--'}</p>
+        <h3>OMG check out this sweet mrfei score!!!!</h3>
+        <p>{this.state.siteDetails.mrfei_score || '--'}</p>
+        <h3>Find this site at</h3>
+        <p>
+          Street: {this.state.siteDetails.address || '--'}
+          <br />
+          City: {this.state.siteDetails.city || '--'}
+          <br />
+          State: {this.state.siteDetails.state || '--'}
+          <br />
+          Zip: {this.state.siteDetails.zip_code || '--'}
+        </p>
         <i>
           {`This site has been declared: ${
             this.state.siteDetails.location_description

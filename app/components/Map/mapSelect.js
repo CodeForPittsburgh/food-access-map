@@ -6,14 +6,26 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    position: 'absolute',
+    top: theme.spacing(4),
+    left: theme.spacing(4),
+    zIndex: 100,
+    background: '#FAFAFA',
+  },
+});
 
 /* eslint-disable react/prefer-stateless-function */
 class MapSelect extends Component {
   render() {
     const towns = this.props.townArray;
+    const { classes } = this.props;
 
     return (
-      <div>
+      <div className={classes.root}>
         <FormControl>
           <InputLabel htmlFor="town-selector">Town/Neighborhood</InputLabel>
           <Select
@@ -36,8 +48,9 @@ class MapSelect extends Component {
 
 MapSelect.propTypes = {
   townArray: PropTypes.array.isRequired,
+  classes: PropTypes.object,
   selectedTown: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 
-export default MapSelect;
+export default withStyles(styles)(MapSelect);

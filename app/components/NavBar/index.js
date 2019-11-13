@@ -5,40 +5,53 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import TypoGraphy from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom';
+import { useTheme } from '@material-ui/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import IconButton from '@material-ui/core/IconButton';
 
-export default function NavBar() {
+import MenuIcon from '@material-ui/icons/MoreVert';
+import MainMenu from './MainMenu';
+import ListMenu from './ListMenu';
+
+function NavBar() {
+  const theme = useTheme();
+  const onSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
   return (
     <div>
       <AppBar color="primary" position="static">
         <Toolbar>
-          <TypoGraphy variant="subtitle1" color="inherit">
-            This Header is the Name of Our Page OMG!!!
-          </TypoGraphy>
-          <List component="nav">
-            <ListItem component="div">
-              <ListItemText inset>
-                <TypoGraphy color="inherit" variant="subtitle1">
-                  <Link to="/locations">Location Table</Link>
-                </TypoGraphy>
-              </ListItemText>
-
-              <ListItemText inset>
-                <TypoGraphy color="inherit" variant="subtitle1">
-                  <Link to="/">Food Map</Link>
-                </TypoGraphy>
-              </ListItemText>
-            </ListItem>
-          </List>
+          <Typography variant="h6" color="inherit" style={{ flexGrow: 1 }}>
+            Food Access Map
+          </Typography>
+          {onSmallScreen ? (
+            <React.Fragment>
+              <IconButton
+                onClick={e => {
+                  setMenuOpen(!menuOpen);
+                  setAnchorEl(e.currentTarget);
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <MainMenu
+                anchorEl={anchorEl}
+                handleClose={() => setAnchorEl(null)}
+              />
+            </React.Fragment>
+          ) : (
+            <ListMenu />
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default NavBar;
