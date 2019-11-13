@@ -59,21 +59,20 @@ class FoodSiteDetail extends React.PureComponent {
   //   }
 
   render() {
-    // return <div>{this.state.siteDetails.name}</div>;
     return (
       <div>
-        <h1>{this.state.siteDetails.name}</h1>
+        <h1>{this.state.siteDetails.name || 'Site Not Found'}</h1>
         <small>
-          {this.state.siteDetails.open_from} until
-          {this.state.siteDetails.open_to}
+          Open from {this.state.siteDetails.open_from || '--'} until
+          {this.state.siteDetails.open_to || '--'}
         </small>
         <br />
         {/* how do open from-to, open close time 1, and open close time 2 relate? */}
         <small>
-          {this.state.siteDetails.open_time1} until
-          {this.state.siteDetails.close_time1}
+          Or is it perhaps {this.state.siteDetails.open_time1 || '--'} until
+          {this.state.siteDetails.close_time1 || '--'}?
         </small>
-        <br />
+        <h2>Days of Operation</h2>
         <FormGroup row>
           <FormControlLabel
             control={
@@ -153,66 +152,91 @@ class FoodSiteDetail extends React.PureComponent {
             labelPlacement="top"
           />
         </FormGroup>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.snap}
-            disabled
+        <h2>The Sweet Deets</h2>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.snap}
+                color="primary"
+                disabled
+              />
+            }
+            label="Takes SNAP"
+            labelPlacement="top"
           />
-          Takes SNAP
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.wic}
-            disabled
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.wic}
+                color="primary"
+                disabled
+              />
+            }
+            label="Takes WIC"
+            labelPlacement="top"
           />
-          Takes WIC
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.fmnp}
-            disabled
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.fmnp}
+                color="primary"
+                disabled
+              />
+            }
+            label="Takes FMNP"
+            labelPlacement="top"
           />
-          Takes FMNP
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.food_bucks}
-            disabled
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.food_bucks}
+                color="primary"
+                disabled
+              />
+            }
+            label="Takes Food Bucks"
+            labelPlacement="top"
           />
-          Takes Food Bucks
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.fresh_produce}
-            disabled
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.fresh_produce}
+                color="primary"
+                disabled
+              />
+            }
+            label="Has Fresh Produce"
+            labelPlacement="top"
           />
-          Has Fresh Produce
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.state.siteDetails.open_to_spec_group}
-            disabled
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!this.state.siteDetails.open_to_spec_group}
+                color="primary"
+                disabled
+              />
+            }
+            label="Open to Special Groups"
+            labelPlacement="top"
           />
-          Open to Special Groups
-        </label>
-        <h3>
-          OMG check out this sweet mrfei score!!!!
-          {this.state.siteDetails.mrfei_score}
-        </h3>
-        <p>Find this site at</p>
-        <p>{this.state.siteDetails.address}</p>
-        <p>{this.state.siteDetails.city}</p>
-        <p>{this.state.siteDetails.state}</p>
-        <p>{this.state.siteDetails.zip_code}</p>
+        </FormGroup>
+        <h3>OMG check out this sweet mrfei score!!!!</h3>
+        <p>{this.state.siteDetails.mrfei_score || '--'}</p>
+        <h3>Find this site at</h3>
+        <p>
+          Street: {this.state.siteDetails.address || '--'}
+          <br />
+          City: {this.state.siteDetails.city || '--'}
+          <br />
+          State: {this.state.siteDetails.state || '--'}
+          <br />
+          Zip: {this.state.siteDetails.zip_code || '--'}
+        </p>
         <i>
-          This site has been declared{' '}
-          {this.state.siteDetails.location_description}
+          {`This site has been declared: ${
+            this.state.siteDetails.location_description
+          }`}
         </i>
       </div>
     );

@@ -4,13 +4,18 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import MaterialTable from 'material-table';
+import { Redirect } from 'react-router-dom';
 import { useApi } from '../../serviceHooks/useApi';
 
 function LocationTable() {
   const foodSiteInfo = useApi();
+  const [shouldRedirectTo, setRedirectTo] = useState(0);
 
+  if (shouldRedirectTo > 0) {
+    return <Redirect to={`/foodSite/${shouldRedirectTo}`} />;
+  }
   return (
     <div>
       <MaterialTable
@@ -21,6 +26,14 @@ function LocationTable() {
           { title: 'Closing Time', field: 'close_time1' },
         ]}
         data={foodSiteInfo}
+        onRowClick={(event, rowData) => setRedirectTo(rowData.id)}
+        actions={[
+          {
+            icon: 'unarchive',
+            tooltip: 'Go to Details Page',
+            onClick: (event, rowData) => setRedirectTo(rowData.id),
+          },
+        ]}
       />
     </div>
   );

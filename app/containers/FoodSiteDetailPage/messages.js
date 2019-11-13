@@ -10,6 +10,6 @@ export const scope = 'app.containers.FoodSiteDetailPage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Details Page (better title . . .)',
+    defaultMessage: 'Detail View',
   },
 });
