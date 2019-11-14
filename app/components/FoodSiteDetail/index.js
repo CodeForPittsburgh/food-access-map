@@ -10,6 +10,7 @@ import React, { memo } from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
 
 // import axios from 'axios';
 
@@ -27,8 +28,8 @@ class FoodSiteDetail extends React.PureComponent {
   componentDidMount() {
     const res = {
       name: 'funkytown',
-      open_from: 5,
-      open_to: 8,
+      open_from: 'March',
+      open_to: 'October',
       open_time1: 6,
       close_time1: 9,
       sunday: true,
@@ -61,17 +62,137 @@ class FoodSiteDetail extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1>{this.state.siteDetails.name || 'Site Not Found'}</h1>
-        <small>
-          Open from {this.state.siteDetails.open_from || '--'} until
-          {this.state.siteDetails.open_to || '--'}
-        </small>
-        <br />
-        {/* how do open from-to, open close time 1, and open close time 2 relate? */}
-        <small>
-          Or is it perhaps {this.state.siteDetails.open_time1 || '--'} until
-          {this.state.siteDetails.close_time1 || '--'}?
-        </small>
+        <h1 className="headline">
+          {this.state.siteDetails.name || 'Site Not Found'}
+        </h1>
+        <Grid
+          container
+          direction="row"
+          justify="space-around"
+          alignItems="center"
+        >
+          <Grid item xs={4}>
+            <i>Regional MRFEI score: </i>
+            <i>{this.state.siteDetails.mrfei_score || '--'}</i>
+            <p>
+              Street: {this.state.siteDetails.address || '--'}
+              <br />
+              City: {this.state.siteDetails.city || '--'}
+              <br />
+              State: {this.state.siteDetails.state || '--'}
+              <br />
+              Zip: {this.state.siteDetails.zip_code || '--'}
+            </p>
+            <i>
+              {`This site has been declared: ${
+                this.state.siteDetails.location_description
+              }`}
+            </i>
+          </Grid>
+          <Grid item xs={4}>
+            <h2>The Sweet Deets</h2>
+            <FormGroup column>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.snap}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Takes SNAP"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.wic}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Takes WIC"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.fmnp}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Takes FMNP"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.food_bucks}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Takes Food Bucks"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.fresh_produce}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Has Fresh Produce"
+                labelPlacement="top"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={!!this.state.siteDetails.open_to_spec_group}
+                    color="primary"
+                    disabled
+                  />
+                }
+                label="Open to Special Groups"
+                labelPlacement="top"
+              />
+            </FormGroup>
+          </Grid>
+          <Grid item xs={4}>
+            <br />
+            <h3>Site is running:</h3>
+            <div>
+              {this.state.siteDetails.open_from &&
+              this.state.siteDetails.open_to ? (
+                <i>
+                  from {this.state.siteDetails.open_from} until{' '}
+                  {this.state.siteDetails.open_to}
+                </i>
+              ) : (
+                <i>all year round</i>
+              )}
+            </div>
+            <h3>Site is open:</h3>
+            <div>
+              {this.state.siteDetails.open_time2 &&
+              this.state.siteDetails.close_time2 ? (
+                <i>
+                  from {this.state.siteDetails.open_time1 || '--'} until{' '}
+                  {this.state.siteDetails.close_time1 || '--'} and{' '}
+                  {this.state.siteDetails.open_time2} until{' '}
+                  {this.state.siteDetails.close_time2}
+                </i>
+              ) : (
+                <i>
+                  from {this.state.siteDetails.open_time1} until{' '}
+                  {this.state.siteDetails.close_time1}
+                </i>
+              )}
+            </div>
+          </Grid>
+        </Grid>
         <h2>Days of Operation</h2>
         <FormGroup row>
           <FormControlLabel
@@ -152,92 +273,6 @@ class FoodSiteDetail extends React.PureComponent {
             labelPlacement="top"
           />
         </FormGroup>
-        <h2>The Sweet Deets</h2>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.snap}
-                color="primary"
-                disabled
-              />
-            }
-            label="Takes SNAP"
-            labelPlacement="top"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.wic}
-                color="primary"
-                disabled
-              />
-            }
-            label="Takes WIC"
-            labelPlacement="top"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.fmnp}
-                color="primary"
-                disabled
-              />
-            }
-            label="Takes FMNP"
-            labelPlacement="top"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.food_bucks}
-                color="primary"
-                disabled
-              />
-            }
-            label="Takes Food Bucks"
-            labelPlacement="top"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.fresh_produce}
-                color="primary"
-                disabled
-              />
-            }
-            label="Has Fresh Produce"
-            labelPlacement="top"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!this.state.siteDetails.open_to_spec_group}
-                color="primary"
-                disabled
-              />
-            }
-            label="Open to Special Groups"
-            labelPlacement="top"
-          />
-        </FormGroup>
-        <h3>OMG check out this sweet mrfei score!!!!</h3>
-        <p>{this.state.siteDetails.mrfei_score || '--'}</p>
-        <h3>Find this site at</h3>
-        <p>
-          Street: {this.state.siteDetails.address || '--'}
-          <br />
-          City: {this.state.siteDetails.city || '--'}
-          <br />
-          State: {this.state.siteDetails.state || '--'}
-          <br />
-          Zip: {this.state.siteDetails.zip_code || '--'}
-        </p>
-        <i>
-          {`This site has been declared: ${
-            this.state.siteDetails.location_description
-          }`}
-        </i>
       </div>
     );
   }

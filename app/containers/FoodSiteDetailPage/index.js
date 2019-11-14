@@ -5,15 +5,23 @@
  *
  */
 
+// import _ from 'lodash';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import messages from './messages';
-import NavBar from '../../components/NavBar';
 import FoodSiteDetail from '../../components/FoodSiteDetail';
+// import { useApi } from '../../serviceHooks/useApi';
 
 export default function FoodSiteDetailPage(props) {
+  // const foodSiteInfo = useApi();
+  // const siteName = _.find(
+  //   foodSiteInfo,
+  //   site => site.id === props.match.params.uniqId,
+  // );
+  // console.log(siteName);
+
   return (
     <Grid
       container
@@ -21,7 +29,6 @@ export default function FoodSiteDetailPage(props) {
       justify="space-around"
       alignItems="center"
     >
-      <NavBar />
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>

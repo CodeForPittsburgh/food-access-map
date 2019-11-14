@@ -27,13 +27,6 @@ function LocationTable() {
         ]}
         data={foodSiteInfo}
         onRowClick={(event, rowData) => setRedirectTo(rowData.id)}
-        actions={[
-          {
-            icon: 'unarchive',
-            tooltip: 'Go to Details Page',
-            onClick: (event, rowData) => setRedirectTo(rowData.id),
-          },
-        ]}
       />
     </div>
   );
