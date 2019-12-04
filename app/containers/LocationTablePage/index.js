@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import { FormattedMessage } from 'react-intl';
 import LocationTable from '../../components/LocationTable';
 import messages from './messages';
-import NavBar from '../../components/NavBar';
 
 export default function LocationTablePage() {
   return (
@@ -20,7 +19,6 @@ export default function LocationTablePage() {
       justify="space-around"
       alignItems="center"
     >
-      <NavBar />
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>
