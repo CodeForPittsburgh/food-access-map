@@ -87,7 +87,7 @@ class Map extends React.PureComponent {
     // Filter out features that we didn't provide
     const features = event.features
       ? event.features.filter(feature => feature.layer.id === 'data')
-      : null;
+      : [];
     if (!features.length) return;
     // If there are still several features, pick one at random
     // Future: might be better to calculate which is closest to cursor
