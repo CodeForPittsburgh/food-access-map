@@ -57,7 +57,7 @@ class Map extends React.PureComponent {
 
   convertToGeoJSON({ data }) {
     // Converts api data to geoJSON points
-    // Might be better this arrived from the server in this format
+    // Might be better if this arrived from the server in this format
     return {
       type: 'FeatureCollection',
       features: data.reduce((result, site) => {
@@ -88,7 +88,7 @@ class Map extends React.PureComponent {
     const features = event.features
       ? event.features.filter(feature => feature.layer.id === 'data')
       : null;
-    if (!features) return;
+    if (!features.length) return;
     // If there are still several features, pick one at random
     // Future: might be better to calculate which is closest to cursor
     const index = Math.floor(Math.random() * features.length);
