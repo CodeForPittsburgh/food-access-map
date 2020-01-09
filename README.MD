@@ -8,6 +8,10 @@ Code for Pittsburgh w/ Pittsburgh Food Policy Council
 The goal for this project is to create an app for mapping and locating food resources in Pittsburgh. The goal is to address food insecurity by allowing individuals to access the app and find what food resources are in their area.
 
  **What if I want to add a food source?**
+ 
+Fill out this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdfkK_SZ0cRBtEgcQqzIQmZmemCt5FZsKNMOsCl60s8-zh1Ow/viewform?usp=sf_link) to let us know!
+ 
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfkK_SZ0cRBtEgcQqzIQmZmemCt5FZsKNMOsCl60s8-zh1Ow/viewform?embedded=true" width="640" height="859" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
 Email steven.saylor@pitt.edu with the food source to be added
 
