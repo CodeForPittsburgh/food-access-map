@@ -13,8 +13,8 @@ Fill out this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdfkK_SZ0cR
 
 Before adding a location, check out the locations we currently have mapped:
 
-[View as a Map](https://wprdc-maps.carto.com/u/wprdc/builder/64b812f6-45fa-4f27-a239-6e61a870d1de/embed) 
-[View as a List](https://github.com/CodeForPittsburgh/food-access-map-data/blob/master/merged_datasets.csv)
++ [View as a Map](https://wprdc-maps.carto.com/u/wprdc/builder/64b812f6-45fa-4f27-a239-6e61a870d1de/embed) 
++ [View as a List](https://github.com/CodeForPittsburgh/food-access-map-data/blob/master/merged_datasets.csv)
 
 **What if I think information about a food source is inaccurate?** 
 
