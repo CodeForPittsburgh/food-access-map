@@ -8,8 +8,13 @@ Code for Pittsburgh w/ Pittsburgh Food Policy Council
 The goal for this project is to create an app for mapping and locating food resources in Pittsburgh. The goal is to address food insecurity by allowing individuals to access the app and find what food resources are in their area.
 
  **What if I want to add a food source?**
+ 
+Fill out this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdfkK_SZ0cRBtEgcQqzIQmZmemCt5FZsKNMOsCl60s8-zh1Ow/viewform?usp=sf_link) to let us know!
 
-Email steven.saylor@pitt.edu with the food source to be added
+Before adding a location, check out the locations we currently have mapped:
+
++ [View as a Map](https://wprdc-maps.carto.com/u/wprdc/builder/64b812f6-45fa-4f27-a239-6e61a870d1de/embed) 
++ [View as a List](https://github.com/CodeForPittsburgh/food-access-map-data/blob/master/merged_datasets.csv)
 
 **What if I think information about a food source is inaccurate?** 
 
