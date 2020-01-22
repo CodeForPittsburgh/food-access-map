@@ -7,12 +7,11 @@
 import React, { memo } from 'react';
 import _ from 'lodash';
 
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
 import axios from 'axios';
 import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
-import CityPin from './cityPin';
 import Wrapper from './Wrapper';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -30,14 +29,15 @@ class Map extends React.PureComponent {
       },
       selectedTown: 'Pittsburgh',
       popupInfo: null,
-      sites: [],
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     axios
       .get('https://dev.stevesaylor.io/api/location/')
-      .then(res => this.setState({ sites: res.data }));
+      .then(res => this.setState({ geoJSON: this.convertToGeoJSON(res) }));
   }
 
   handleSelection(event) {
@@ -55,23 +55,45 @@ class Map extends React.PureComponent {
     });
   }
 
-  renderCityMarker = (city, index) => {
-    if (city.longitude) {
-      return (
-        <Marker
-          key={`marker-${index}`}
-          longitude={city.longitude}
-          latitude={city.latitude}
-        >
-          <CityPin
-            size={20}
-            onClick={() => this.setState({ popupInfo: city })}
-          />
-        </Marker>
-      );
-    }
-    return true;
-  };
+  convertToGeoJSON({ data }) {
+    // Converts api data to geoJSON points
+    // Might be better if this arrived from the server in this format
+    return {
+      type: 'FeatureCollection',
+      features: data.reduce((result, site) => {
+        const { latitude, longitude } = site;
+        if (longitude) {
+          result.push({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              // GeoJSON takes lat/lon in reverse order
+              // Even more confusing: at least half of the lat/lon values provided are reversed??
+              // Not sure how this wasn't a problem with previous config
+              coordinates:
+                longitude < latitude
+                  ? [longitude, latitude]
+                  : [latitude, longitude],
+            },
+            properties: site,
+          });
+        }
+        return result;
+      }, []),
+    };
+  }
+
+  handleClick(event) {
+    // Filter out features that we didn't provide
+    const features = event.features
+      ? event.features.filter(feature => feature.layer.id === 'data')
+      : [];
+    if (!features.length) return;
+    // If there are still several features, pick one at random
+    // Future: might be better to calculate which is closest to cursor
+    const index = Math.floor(Math.random() * features.length);
+    this.setState({ popupInfo: features[index].properties });
+  }
 
   renderPopup() {
     const { popupInfo } = this.state;
@@ -103,10 +125,22 @@ class Map extends React.PureComponent {
         <ReactMapGL
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
+          onClick={this.handleClick}
+          clickRadius={10}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
-          {this.state.sites.map(this.renderCityMarker)}
-
+          {!!this.state.geoJSON && (
+            <Source type="geojson" data={this.state.geoJSON}>
+              <Layer
+                type="symbol"
+                id="data"
+                layout={{
+                  'icon-image': 'marker-15',
+                  'icon-allow-overlap': true,
+                }}
+              />
+            </Source>
+          )}
           {this.renderPopup()}
         </ReactMapGL>
       </Wrapper>
