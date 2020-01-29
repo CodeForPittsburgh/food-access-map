@@ -70,12 +70,7 @@ class Map extends React.PureComponent {
             geometry: {
               type: 'Point',
               // GeoJSON takes lat/lon in reverse order
-              // Even more confusing: at least half of the lat/lon values provided are reversed??
-              // Not sure how this wasn't a problem with previous config
-              coordinates:
-                longitude < latitude
-                  ? [longitude, latitude]
-                  : [latitude, longitude],
+              coordinates: [longitude, latitude],
             },
             properties: site,
           });
