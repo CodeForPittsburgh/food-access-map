@@ -14,6 +14,8 @@ import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
 
+const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
+
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
   constructor(props) {
@@ -95,6 +97,17 @@ class Map extends React.PureComponent {
     this.setState({ popupInfo: features[index].properties });
   }
 
+  handleHover(event) {
+    const isHoveringFeature = event.features.some(
+      feature => feature.layer.id === 'data',
+    );
+    if (isHoveringFeature) {
+      event.target.style.cursor = 'pointer'; // eslint-disable-line
+    } else {
+      event.target.style.cursor = 'grab'; // eslint-disable-line
+    }
+  }
+
   renderPopup() {
     const { popupInfo } = this.state;
 
@@ -126,7 +139,8 @@ class Map extends React.PureComponent {
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleClick}
-          clickRadius={10}
+          onHover={_.throttle(this.handleHover, 100)}
+          clickRadius={clickRadius}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
           {!!this.state.geoJSON && (
