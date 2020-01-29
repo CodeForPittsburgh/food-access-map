@@ -6,13 +6,14 @@
 
 import React, { memo } from 'react';
 import _ from 'lodash';
-
 import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
 import axios from 'axios';
+
 import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
+import getClosestFeature from './getClosestFeature';
 
 const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
 
@@ -89,10 +90,8 @@ class Map extends React.PureComponent {
       this.setState({ popupInfo: null });
       return;
     }
-    // If there are still several features, pick one at random
-    // Future: might be better to calculate which is closest to cursor
-    const index = Math.floor(Math.random() * features.length);
-    this.setState({ popupInfo: features[index].properties });
+    const closestFeature = getClosestFeature(event);
+    this.setState({ popupInfo: closestFeature });
   }
 
   handleHover(event) {
