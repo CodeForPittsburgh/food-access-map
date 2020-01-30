@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, createRef } from 'react';
 import _ from 'lodash';
 import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
 import axios from 'axios';
@@ -15,6 +15,14 @@ import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
 import getClosestFeature from './getClosestFeature';
 import convertToGeoJSON from './convertToGeoJSON';
+import iconCartSrc from '../../images/icon-cart.svg';
+import iconCarrotSrc from '../../images/icon-carrot.svg';
+
+// Mapbox addImage takes an HTMLImageElement, ImageData, or ImageBitmap
+const iconCartElement = new Image(24, 24);
+iconCartElement.src = iconCartSrc;
+const iconCarrotElement = new Image(30, 30);
+iconCarrotElement.src = iconCarrotSrc;
 
 const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
 
@@ -34,7 +42,7 @@ class Map extends React.PureComponent {
       selectedTown: 'Pittsburgh',
       popupInfo: null,
     };
-
+    this.mapRef = createRef();
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -42,6 +50,10 @@ class Map extends React.PureComponent {
     axios
       .get('https://dev.stevesaylor.io/api/location/')
       .then(res => this.setState({ geoJSON: convertToGeoJSON(res) }));
+    // Add the icons to use in the Layer layout below
+    const mapInstance = this.mapRef.current.getMap();
+    mapInstance.addImage('icon-cart', iconCartElement);
+    mapInstance.addImage('icon-carrot', iconCarrotElement);
   }
 
   handleSelection(event) {
@@ -116,6 +128,7 @@ class Map extends React.PureComponent {
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleClick}
           onHover={_.throttle(this.handleHover, 100)}
+          ref={this.mapRef}
           clickRadius={clickRadius}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
@@ -125,8 +138,14 @@ class Map extends React.PureComponent {
                 type="symbol"
                 id="data"
                 layout={{
-                  'icon-image': 'marker-15',
-                  'icon-allow-overlap': true,
+                  'icon-image': [
+                    'match',
+                    ['get', 'type'],
+                    'Supermarket',
+                    'icon-carrot',
+                    'icon-cart',
+                  ],
+                  'icon-ignore-placement': true,
                 }}
               />
             </Source>
