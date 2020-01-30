@@ -13,7 +13,7 @@ import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
-import getClosestSiteId from './getClosestSiteId';
+import getClosestSite from './getClosestSite';
 import convertToGeoJSON from './convertToGeoJSON';
 import iconCartSrc from '../../images/icon-cart.svg';
 import iconCarrotSrc from '../../images/icon-carrot.svg';
@@ -25,7 +25,6 @@ const iconCarrotElement = new Image(30, 30);
 iconCarrotElement.src = iconCarrotSrc;
 
 const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
-let lookupSite; // Seems unnecessary to keep this in component state
 
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
@@ -49,9 +48,7 @@ class Map extends React.PureComponent {
 
   async componentDidMount() {
     const res = await axios.get('https://dev.stevesaylor.io/api/location/');
-    const { siteLookup, geoJSON } = convertToGeoJSON(res);
-    this.setState({ geoJSON });
-    lookupSite = siteLookup;
+    this.setState({ geoJSON: convertToGeoJSON(res) });
     // Add the icons to use in the Layer layout below
     const mapInstance = this.mapRef.current.getMap();
     mapInstance.addImage('icon-cart', iconCartElement);
@@ -82,8 +79,7 @@ class Map extends React.PureComponent {
       this.setState({ popupInfo: null });
       return;
     }
-    const closestSiteId = getClosestSiteId(event);
-    const closestSite = lookupSite[closestSiteId];
+    const closestSite = getClosestSite(event);
     this.setState({ popupInfo: closestSite });
   }
 
