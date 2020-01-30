@@ -13,7 +13,7 @@ import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
-import getClosestFeature from './getClosestFeature';
+import getClosestSiteId from './getClosestSiteId';
 import convertToGeoJSON from './convertToGeoJSON';
 import iconCartSrc from '../../images/icon-cart.svg';
 import iconCarrotSrc from '../../images/icon-carrot.svg';
@@ -25,6 +25,7 @@ const iconCarrotElement = new Image(30, 30);
 iconCarrotElement.src = iconCarrotSrc;
 
 const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
+let lookupSite; // Seems unnecessary to keep this in component state
 
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
@@ -46,10 +47,11 @@ class Map extends React.PureComponent {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    axios
-      .get('https://dev.stevesaylor.io/api/location/')
-      .then(res => this.setState({ geoJSON: convertToGeoJSON(res) }));
+  async componentDidMount() {
+    const res = await axios.get('https://dev.stevesaylor.io/api/location/');
+    const { siteLookup, geoJSON } = convertToGeoJSON(res);
+    this.setState({ geoJSON });
+    lookupSite = siteLookup;
     // Add the icons to use in the Layer layout below
     const mapInstance = this.mapRef.current.getMap();
     mapInstance.addImage('icon-cart', iconCartElement);
@@ -80,8 +82,9 @@ class Map extends React.PureComponent {
       this.setState({ popupInfo: null });
       return;
     }
-    const closestFeature = getClosestFeature(event);
-    this.setState({ popupInfo: closestFeature });
+    const closestSiteId = getClosestSiteId(event);
+    const closestSite = lookupSite[closestSiteId];
+    this.setState({ popupInfo: closestSite });
   }
 
   handleHover(event) {
@@ -130,6 +133,8 @@ class Map extends React.PureComponent {
           onHover={_.throttle(this.handleHover, 100)}
           ref={this.mapRef}
           clickRadius={clickRadius}
+          minZoom={9}
+          maxZoom={18}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
           {!!this.state.geoJSON && (

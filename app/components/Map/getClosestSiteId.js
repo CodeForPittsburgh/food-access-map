@@ -2,7 +2,7 @@
 // However it is worthwhile to calculate the closest feature in case there are several
 // features within the click radius and you are trying to be precise.
 
-const getClosestFeature = event => {
+const getClosestSiteId = event => {
   const [pointerLng, pointerLat] = event.lngLat;
   const first = event.features.shift();
   const closest = {
@@ -20,7 +20,7 @@ const getClosestFeature = event => {
       closest.properties = properties;
     }
   });
-  return closest.properties;
+  return closest.properties.id;
 };
 
-export default getClosestFeature;
+export default getClosestSiteId;
