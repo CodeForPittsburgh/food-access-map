@@ -72,14 +72,12 @@ class Map extends React.PureComponent {
 
   handleClick(event) {
     // Filter out features that we didn't provide
-    const features = event.features
-      ? event.features.filter(feature => feature.layer.id === 'data')
-      : [];
+    const features = event.features.filter(({ layer }) => layer.id === 'data');
     if (!features.length) {
       this.setState({ popupInfo: null });
       return;
     }
-    const closestSite = getClosestSite(event);
+    const closestSite = getClosestSite(features, event.lngLat);
     this.setState({ popupInfo: closestSite });
   }
 
