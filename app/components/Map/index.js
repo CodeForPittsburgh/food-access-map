@@ -71,26 +71,12 @@ class Map extends React.PureComponent {
   }
 
   handleClick(event) {
-    // Filter out features that we didn't provide
-    const features = event.features.filter(({ layer }) => layer.id === 'data');
-    if (!features.length) {
+    if (!event.features.length) {
       this.setState({ popupInfo: null });
       return;
     }
-    const closestSite = getClosestSite(features, event.lngLat);
+    const closestSite = getClosestSite(event.features, event.lngLat);
     this.setState({ popupInfo: closestSite });
-  }
-
-  handleHover(event) {
-    if (!event.features) return;
-    const isHoveringFeature = event.features.some(
-      feature => feature.layer.id === 'data',
-    );
-    if (isHoveringFeature) {
-      event.target.style.cursor = 'pointer'; // eslint-disable-line
-    } else {
-      event.target.style.cursor = 'grab'; // eslint-disable-line
-    }
   }
 
   renderPopup() {
@@ -124,11 +110,11 @@ class Map extends React.PureComponent {
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleClick}
-          onHover={_.throttle(this.handleHover, 100)}
           ref={this.mapRef}
           clickRadius={clickRadius}
           minZoom={9}
           maxZoom={18}
+          interactiveLayerIds={['data']}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
           {!!this.state.geoJSON && (
