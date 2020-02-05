@@ -5,14 +5,12 @@
  */
 
 import React, { memo } from 'react';
-// import _ from 'lodash';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-
-// import axios from 'axios';
+import axios from 'axios';
 
 /* eslint-disable react/prefer-stateless-function */
 class FoodSiteDetail extends React.PureComponent {
@@ -24,40 +22,11 @@ class FoodSiteDetail extends React.PureComponent {
     };
   }
 
-  //   uncomment other component mount and delete this once we have fewer null results
   componentDidMount() {
-    const res = {
-      name: 'funkytown',
-      open_from: 'March',
-      open_to: 'October',
-      open_time1: 6,
-      close_time1: 9,
-      sunday: true,
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      friday: true,
-      saturday: false,
-      snap: true,
-      wic: true,
-      fmnp: true,
-      fresh_produce: false,
-      mrfei_score: 152,
-      food_bucks: false,
-      open_to_spec_group: false,
-      address: 'yer moms house',
-      city: 'pgh',
-      state: 'pa',
-      zip_code: 12345,
-      location_description: 'sassy',
-    };
-    this.setState({ siteDetails: res });
+    axios
+      .get(`https://dev.stevesaylor.io/api/location/${this.props.siteId}/`)
+      .then(res => this.setState({ siteDetails: res.data }));
   }
-  //   componentDidMount() {
-  //     axios
-  //       .get(`https://dev.stevesaylor.io/api/location/${this.props.siteId}/`)
-  //       .then(res => this.setState({ siteDetails: res.data }));
-  //   }
 
   render() {
     return (
@@ -280,6 +249,6 @@ class FoodSiteDetail extends React.PureComponent {
 
 export default memo(FoodSiteDetail);
 
-// FoodSiteDetail.propTypes = {
-//   siteId: PropTypes.string.isRequired,
-// };
+FoodSiteDetail.propTypes = {
+  siteId: PropTypes.string.isRequired,
+};

@@ -33,7 +33,11 @@ class Map extends React.PureComponent {
         zoom: 12,
       },
       selectedDetail: 'wic',
-      selectedTown: 'Pittsburgh',
+      selectedTown: {
+        place: 'Pittsburgh',
+        longitude: -79.9762579547,
+        latitude: 40.4396259337,
+      },
       selectedTypes: [],
       popupInfo: null,
       sites: [],
@@ -50,9 +54,12 @@ class Map extends React.PureComponent {
     );
   }
 
-  handlelocationSelection(event) {
+  handlelocationSelection(_event, value) {
+    if (!value) {
+      return;
+    }
     const oldView = _.clone(this.state.viewport);
-    const place = event.target.value;
+    const { place } = value;
     const { latitude, longitude } = _.find(townArray, { place });
     const newView = _.assign({}, oldView, {
       latitude,
@@ -138,7 +145,7 @@ class Map extends React.PureComponent {
         <MapSelect
           townArray={townArray}
           selectedTown={this.state.selectedTown}
-          handleChange={e => this.handlelocationSelection(e)}
+          handleChange={(_e, v) => this.handlelocationSelection(_e, v)}
         />
         <DetailSelect
           detailArray={detailArray}

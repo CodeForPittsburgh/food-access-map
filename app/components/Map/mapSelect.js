@@ -1,12 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const styles = theme => ({
   root: {
@@ -27,18 +26,21 @@ class MapSelect extends Component {
     return (
       <div className={classes.root}>
         <FormControl>
-          <InputLabel htmlFor="town-selector">Town/Neighborhood</InputLabel>
-          <Select
-            value={this.props.selectedTown}
+          <Autocomplete
+            options={towns}
+            getOptionLabel={option => option.place}
             onChange={this.props.handleChange}
-            input={<Input name="townSelector" id="town-selector" />}
-          >
-            {towns.map(town => (
-              <MenuItem key={town.latitude + town.longitude} value={town.place}>
-                {town.place}
-              </MenuItem>
-            ))}
-          </Select>
+            style={{ width: 300 }}
+            defaultValue={_.find(towns, { place: 'Pittsburgh' })}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Zoom a Neighborhood"
+                variant="outlined"
+                fullWidth
+              />
+            )}
+          />
           <FormHelperText>Choose a region for instant zoom</FormHelperText>
         </FormControl>
       </div>
@@ -49,7 +51,7 @@ class MapSelect extends Component {
 MapSelect.propTypes = {
   townArray: PropTypes.array.isRequired,
   classes: PropTypes.object,
-  selectedTown: PropTypes.string.isRequired,
+  selectedTown: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 
