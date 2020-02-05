@@ -10,7 +10,11 @@ import _ from 'lodash';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import axios from 'axios';
 import MapSelect from './mapSelect';
+import DetailSelect from './detailSelect';
+import TypeSelect from './typeSelect';
 import { townArray } from './townConstants';
+import { detailArray } from './detailConstants';
+import { typeArray } from './typeConstants';
 import CityInfo from './cityInfo';
 import CityPin from './cityPin';
 import Wrapper from './Wrapper';
@@ -28,21 +32,34 @@ class Map extends React.PureComponent {
         longitude: -79.9659,
         zoom: 12,
       },
-      selectedTown: 'Pittsburgh',
+      selectedDetail: 'wic',
+      selectedTown: {
+        place: 'Pittsburgh',
+        longitude: -79.9762579547,
+        latitude: 40.4396259337,
+      },
+      selectedTypes: [],
       popupInfo: null,
       sites: [],
+      allSites: [],
     };
   }
 
   componentDidMount() {
-    axios
-      .get('https://dev.stevesaylor.io/api/location/')
-      .then(res => this.setState({ sites: res.data }));
+    axios.get('https://dev.stevesaylor.io/api/location/').then(res =>
+      this.setState({
+        allSites: res.data,
+        sites: _.filter(res.data, site => site.wic),
+      }),
+    );
   }
 
-  handleSelection(event) {
+  handlelocationSelection(_event, value) {
+    if (!value) {
+      return;
+    }
     const oldView = _.clone(this.state.viewport);
-    const place = event.target.value;
+    const { place } = value;
     const { latitude, longitude } = _.find(townArray, { place });
     const newView = _.assign({}, oldView, {
       latitude,
@@ -52,6 +69,36 @@ class Map extends React.PureComponent {
     this.setState({
       viewport: newView,
       selectedTown: place,
+    });
+  }
+
+  handleDetailSelection(event) {
+    const totalSites = _.cloneDeep(this.state.allSites);
+    const filter = event.target.value;
+
+    if (filter === 'all') {
+      this.setState({
+        selectedDetail: filter,
+        sites: totalSites,
+      });
+    } else {
+      const filteredSites = _.filter(totalSites, site => site[filter]);
+      this.setState({
+        selectedDetail: filter,
+        sites: filteredSites,
+      });
+    }
+  }
+
+  handleTypeSelection(event) {
+    const totalSites = _.cloneDeep(this.state.allSites);
+    const types = event.target.value;
+    const filteredSites = types.length
+      ? _.filter(totalSites, site => _.includes(types, site.type))
+      : totalSites;
+    this.setState({
+      selectedTypes: types,
+      sites: filteredSites,
     });
   }
 
@@ -98,7 +145,17 @@ class Map extends React.PureComponent {
         <MapSelect
           townArray={townArray}
           selectedTown={this.state.selectedTown}
-          handleChange={e => this.handleSelection(e)}
+          handleChange={(_e, v) => this.handlelocationSelection(_e, v)}
+        />
+        <DetailSelect
+          detailArray={detailArray}
+          selectedDetail={this.state.selectedDetail}
+          handleChange={e => this.handleDetailSelection(e)}
+        />
+        <TypeSelect
+          typeArray={typeArray}
+          selectedTypes={this.state.selectedTypes}
+          handleChange={e => this.handleTypeSelection(e)}
         />
         <ReactMapGL
           {...this.state.viewport}
