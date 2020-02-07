@@ -4,18 +4,12 @@
 
 const getClosestSite = (features, pointerCoords) => {
   const [pointerLng, pointerLat] = pointerCoords;
-  const first = features.shift();
-  const closest = {
-    offset:
-      Math.abs(pointerLng - first.properties.longitude) +
-      Math.abs(pointerLat - first.properties.latitude),
-    properties: first.properties,
-  };
+  const closest = {};
   features.forEach(({ properties }) => {
     const currOffset =
       Math.abs(pointerLng - properties.longitude) +
       Math.abs(pointerLat - properties.latitude);
-    if (currOffset < closest.offset) {
+    if (!closest.offset || currOffset < closest.offset) {
       closest.offset = currOffset;
       closest.properties = properties;
     }
