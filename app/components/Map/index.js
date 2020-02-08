@@ -4,15 +4,27 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, createRef } from 'react';
 import _ from 'lodash';
-
 import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
 import axios from 'axios';
+
 import MapSelect from './mapSelect';
 import { townArray } from './townConstants';
 import CityInfo from './cityInfo';
 import Wrapper from './Wrapper';
+import getClosestSite from './getClosestSite';
+import convertToGeoJSON from './convertToGeoJSON';
+import iconCartSrc from '../../images/icon-cart.svg';
+import iconCarrotSrc from '../../images/icon-carrot.svg';
+
+// Mapbox addImage takes an HTMLImageElement, ImageData, or ImageBitmap
+const iconCartElement = new Image(24, 24);
+iconCartElement.src = iconCartSrc;
+const iconCarrotElement = new Image(30, 30);
+iconCarrotElement.src = iconCarrotSrc;
+
+const clickRadius = navigator.userAgent.includes('Mobi') ? 10 : 0;
 
 /* eslint-disable react/prefer-stateless-function */
 class Map extends React.PureComponent {
@@ -30,14 +42,17 @@ class Map extends React.PureComponent {
       selectedTown: 'Pittsburgh',
       popupInfo: null,
     };
-
+    this.mapRef = createRef();
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    axios
-      .get('https://dev.stevesaylor.io/api/location/')
-      .then(res => this.setState({ geoJSON: this.convertToGeoJSON(res) }));
+  async componentDidMount() {
+    const res = await axios.get('https://dev.stevesaylor.io/api/location/');
+    this.setState({ geoJSON: convertToGeoJSON(res) });
+    // Add the icons to use in the Layer layout below
+    const mapInstance = this.mapRef.current.getMap();
+    mapInstance.addImage('icon-cart', iconCartElement);
+    mapInstance.addImage('icon-carrot', iconCarrotElement);
   }
 
   handleSelection(event) {
@@ -55,44 +70,13 @@ class Map extends React.PureComponent {
     });
   }
 
-  convertToGeoJSON({ data }) {
-    // Converts api data to geoJSON points
-    // Might be better if this arrived from the server in this format
-    return {
-      type: 'FeatureCollection',
-      features: data.reduce((result, site) => {
-        const { latitude, longitude } = site;
-        if (longitude) {
-          result.push({
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              // GeoJSON takes lat/lon in reverse order
-              // Even more confusing: at least half of the lat/lon values provided are reversed??
-              // Not sure how this wasn't a problem with previous config
-              coordinates:
-                longitude < latitude
-                  ? [longitude, latitude]
-                  : [latitude, longitude],
-            },
-            properties: site,
-          });
-        }
-        return result;
-      }, []),
-    };
-  }
-
   handleClick(event) {
-    // Filter out features that we didn't provide
-    const features = event.features
-      ? event.features.filter(feature => feature.layer.id === 'data')
-      : [];
-    if (!features.length) return;
-    // If there are still several features, pick one at random
-    // Future: might be better to calculate which is closest to cursor
-    const index = Math.floor(Math.random() * features.length);
-    this.setState({ popupInfo: features[index].properties });
+    if (!event.features.length) {
+      this.setState({ popupInfo: null });
+      return;
+    }
+    const closestSite = getClosestSite(event.features, event.lngLat);
+    this.setState({ popupInfo: closestSite });
   }
 
   renderPopup() {
@@ -126,7 +110,11 @@ class Map extends React.PureComponent {
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleClick}
-          clickRadius={10}
+          ref={this.mapRef}
+          clickRadius={clickRadius}
+          minZoom={9}
+          maxZoom={18}
+          interactiveLayerIds={['data']}
           mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
         >
           {!!this.state.geoJSON && (
@@ -135,8 +123,14 @@ class Map extends React.PureComponent {
                 type="symbol"
                 id="data"
                 layout={{
-                  'icon-image': 'marker-15',
-                  'icon-allow-overlap': true,
+                  'icon-image': [
+                    'match',
+                    ['get', 'type'],
+                    'Supermarket',
+                    'icon-carrot',
+                    'icon-cart',
+                  ],
+                  'icon-ignore-placement': true,
                 }}
               />
             </Source>
