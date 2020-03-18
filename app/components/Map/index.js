@@ -94,6 +94,7 @@ function Map(/* props */) {
         onViewportChange={vport => setViewport(vport)}
         onClick={handleClick}
         clickRadius={10}
+        interactiveLayerIds={['data']}
         mapboxApiAccessToken="pk.eyJ1IjoiaHlwZXJmbHVpZCIsImEiOiJjaWpra3Q0MnIwMzRhdGZtNXAwMzRmNXhvIn0.tZzUmF9nGk2h28zx6PM13w"
       >
         {!!geoJSON && (
