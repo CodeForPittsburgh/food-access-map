@@ -5,11 +5,13 @@
  *
  */
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { FormattedMessage } from 'react-intl';
-import LocationTable from '../../components/LocationTable';
+
 import messages from './messages';
+const LocationTable = lazy(() => import('../../components/LocationTable'));
 
 export default function LocationTablePage() {
   return (
@@ -22,7 +24,9 @@ export default function LocationTablePage() {
       <h1 className="headline">
         <FormattedMessage {...messages.header} />
       </h1>
-      <LocationTable />
+      <Suspense fallback={<CircularProgress />}>
+        <LocationTable />
+      </Suspense>
     </Grid>
   );
 }
